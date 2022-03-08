@@ -62,7 +62,7 @@
 
     - name: get currently configured nameservers
       set_fact:
-        configured_nameservers: "{{ resolvconf_slurp.content | b64decode | regex_findall('\\s*nameserver\\s*(.*)') | ipaddr }}"
+        configured_nameservers: "{{ resolvconf_slurp.content | b64decode | regex_findall('\\s*nameserver\\s*(.*)') | ansible.utils.ipaddr }}"
       when: resolvconf_slurp.content is defined
 
   when: resolvconf_stat.stat.exists is defined and resolvconf_stat.stat.exists
