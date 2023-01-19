@@ -7,6 +7,9 @@ crio_versioned_pkg:
   "1.21":
     - "cri-o-1.21.*"
 
-default_crio_packages: "{{ [ crio_versioned_pkg[crio_version], 'oci-systemd-hook' ] }}"
+default_crio_packages: 
+  - containers-common-2:1-8.module+el8.5.0+13954+1b78b731.noarch
+  - oci-systemd-hook
+  - "{{ crio_versioned_pkg[crio_version] }}"
 
 crio_packages: "{{ redhat_crio_packages | default(default_crio_packages) }}"
